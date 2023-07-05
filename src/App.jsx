@@ -12,7 +12,7 @@ function App() {
         {/* Navbar section */}
         <Navbar />
 
-        <div className="w-full h-full ">
+        <div className="w-full h-full">
           <Home />
           <OurPackage />
           <CallUs />
