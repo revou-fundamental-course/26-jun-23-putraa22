@@ -14,7 +14,7 @@ The steps to install and run this project are:
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/revou-fundamental-course/26-jun-23-putraa22.git
 ```
 
 Go to the project directory
