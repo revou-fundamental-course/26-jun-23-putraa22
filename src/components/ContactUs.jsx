@@ -15,8 +15,33 @@ function ContactUs() {
     setEmail(e.target.value);
   };
 
+  const validateName = (name) => {
+    const minLength = 5;
+    const maxLength = 100;
+    const nameRegex = /^[a-zA-Z]+$/;
+
+    if (
+      name.length < minLength ||
+      name.length > maxLength ||
+      !nameRegex.test(name)
+    ) {
+      return false;
+    }
+    return true;
+  };
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // check name validation
+    if (!validateName(name)) {
+      setIsValid(false);
+      return;
+    }
+    setIsValid(true);
 
     // check email validity
     if (!validateEmail(email)) {
@@ -53,10 +78,21 @@ function ContactUs() {
           <input
             type="text"
             id="name"
+            required
             value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            onChange={handleNameChange}
+            className={
+              !isValid
+                ? "outline-red-500 w-full px-3 py-2 border border-red-500 rounded-md"
+                : "w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            }
           />
+          {!isValid && (
+            <p className="text-red-500 text-xs">
+              Invalid name. Please enter a valid name containing 5 to 100
+              alphabetic characters.
+            </p>
+          )}
         </div>
         <div className="mb-4">
           <label
@@ -68,6 +104,7 @@ function ContactUs() {
           <input
             type="email"
             id="email"
+            required
             value={email}
             onChange={handleEmailChange}
             className={
@@ -90,6 +127,7 @@ function ContactUs() {
           <textarea
             id="message"
             value={message}
+            required
             onChange={(e) => setMessage(e.target.value)}
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
           ></textarea>
