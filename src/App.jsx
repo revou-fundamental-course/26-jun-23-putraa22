@@ -9,7 +9,6 @@ function App() {
   return (
     <>
       <div className="w-full min-h-screen  bg-white ">
-        {/* Navbar section */}
         <Navbar />
 
         <div className="w-full h-full">
